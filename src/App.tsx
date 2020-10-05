@@ -1,13 +1,17 @@
 import React from 'react';
-import { hot } from 'react-hot-loader/root';
+import Card from 'react-bootstrap/Card';
+import Dashboard from './components/Dashboard';
+
 import './App.css';
 
 const App = () => {
   return (
-    <div className="App">
-      <h1>App</h1>
+    <div className="app">
+      <Card bg="light" className="dashboard-card py-5">
+        <Dashboard />
+      </Card>
     </div>
   );
 };
 
-export default hot(App);
+export default App;

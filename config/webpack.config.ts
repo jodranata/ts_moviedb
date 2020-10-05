@@ -16,7 +16,10 @@ const webpackConf: webpack.ConfigurationFactory = (
   const isProduction = args.mode === 'production';
   const isDevelopment = args.mode === 'development';
 
-  const getLoaders = (cssOption?: webpack.RuleSetQuery): webpack.RuleSetUse => {
+  const getLoaders = (
+    cssOption?: webpack.RuleSetQuery,
+    preProcessor?: string,
+  ): webpack.RuleSetUse => {
     const loaders = [
       isDevelopment && require.resolve('style-loader'),
       isProduction && {
@@ -26,8 +29,20 @@ const webpackConf: webpack.ConfigurationFactory = (
         loader: require.resolve('css-loader'),
         options: cssOption,
       },
-      { loader: require.resolve('sass-loader') },
+      {
+        loader: require.resolve('postcss-loader'),
+        options: {
+          postcssOptions: {
+            plugins: ['autoprefixer', 'postcss-preset-env'],
+          },
+        },
+      },
+      preProcessor && {
+        loader: require.resolve(preProcessor),
+        options: { sourceMap: true },
+      },
     ].filter(Boolean) as webpack.RuleSetUse;
+
     return loaders;
   };
 
@@ -76,9 +91,6 @@ const webpackConf: webpack.ConfigurationFactory = (
     },
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.json'],
-      alias: {
-        'react-dom': '@hot-loader/react-dom',
-      },
     },
     devServer: {
       inline: true,
@@ -97,7 +109,7 @@ const webpackConf: webpack.ConfigurationFactory = (
           oneOf: [
             {
               test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-              loader: require.resolve('url-loader'),
+              loader: 'url-loader',
               options: {
                 limit: 10000,
                 name: 'static/media/[name].[hash:8].[ext]',
@@ -121,7 +133,6 @@ const webpackConf: webpack.ConfigurationFactory = (
                         regenerator: true,
                       },
                     ],
-                    'react-hot-loader/babel',
                   ],
                   sourceType: 'unambiguous',
                   babelrc: false,
@@ -132,13 +143,11 @@ const webpackConf: webpack.ConfigurationFactory = (
             },
             {
               test: /\.css$/,
-              exclude: /node_modules/,
               use: getLoaders({ importLoaders: 1 }),
             },
             {
               test: /\.(scss|sass)$/,
-              exclude: /node_modules/,
-              use: getLoaders(),
+              use: getLoaders({ importLoader: 3 }, 'sass-loader'),
             },
             {
               loader: require.resolve('file-loader'),

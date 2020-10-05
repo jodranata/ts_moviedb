@@ -1,3 +1,12 @@
-.App {
-  color: teal;
+.app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard-card {
+  width: 80%;
+  height: 80%;
 }

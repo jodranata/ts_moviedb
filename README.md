@@ -1,3 +1,3 @@
-## React-typescript template
+## Typescript moviedb App
 
-Bundled using webpack, with typescript-eslint as linters
+A moviedb app created with react and typescript
