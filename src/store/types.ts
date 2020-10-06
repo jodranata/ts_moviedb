@@ -3,6 +3,7 @@ export const CLEAR_SEARCH_MOVIE = 'CLEAR_SEARCH_MOVIE';
 export const GET_MOVIE_DETAIL = 'GET_MOVIE_DETAIL';
 export const SET_ERROR = 'SET_ERROR';
 export const SET_LOADING = 'SET_LOADING';
+export const noIcons = `http://placehold.jp/300/919191/ffffff/500x750.png?text=%3F&css=%7B%22border%22%3A%22%2014px%20solid%20rgba(0%2C0%2C0%2C0.2)%22%7D`;
 
 export interface SearchedMovieResult {
   popularity: number;
@@ -28,7 +29,7 @@ export interface SearchedMovieResponse {
   total_pages: number;
 }
 
-interface ProductionCompanies {
+export interface ProductionCompanies {
   name: string;
   id: number;
   logo_path: string | null;

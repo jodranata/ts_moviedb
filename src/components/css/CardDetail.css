@@ -1,0 +1,23 @@
+.detail-title {
+  font-size: 2rem;
+}
+
+.detail-tagline {
+  color: rgb(170, 170, 170);
+  opacity: 0.75;
+  font-style: italic;
+}
+
+.detail-overview {
+  font-size: 1.1rem;
+}
+
+.detail-misc {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.detail-item {
+  flex: 0 0 50%;
+  max-width: 50%;
+}

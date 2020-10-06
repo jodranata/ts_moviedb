@@ -1,5 +1,6 @@
 import React from 'react';
-import Card from 'react-bootstrap/Card';
+
+import Container from 'react-bootstrap/Container';
 import Dashboard from './components/Dashboard';
 
 import './App.css';
@@ -7,9 +8,9 @@ import './App.css';
 const App = () => {
   return (
     <div className="app">
-      <Card bg="light" className="dashboard-card py-5">
+      <Container className="dashboard-card py-5 bg-dark text-light rounded shadow-lg">
         <Dashboard />
-      </Card>
+      </Container>
     </div>
   );
 };

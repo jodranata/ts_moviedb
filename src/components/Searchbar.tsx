@@ -7,16 +7,22 @@ import { searchMovieAction } from '../store/actions/dataAction';
 
 const Searchbar = () => {
   const dispatch = useDispatch();
+  const debounceDispatchSearch = debounce(1000, (val: string) =>
+    dispatch(searchMovieAction(val)),
+  );
+  const debounceDispatchClear = debounce(200, () =>
+    dispatch(searchMovieAction('')),
+  );
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {
       target: { value },
     } = e;
 
-    debounce(1000, (val: string) => dispatch(searchMovieAction(val)))(value);
+    debounceDispatchSearch(value);
   };
 
   const handleOnBlur = () => {
-    dispatch(searchMovieAction(''));
+    debounceDispatchClear();
   };
 
   return (
