@@ -1,29 +1,26 @@
 .suggestions-collapse-enter,
 .suggestions-collapse-appear {
   /* inital style when component mount to the DOM "in" prop just state to true*/
-  opacity: 1;
-  max-height: 0px;
+  height: 0px;
   overflow: hidden;
 }
 
 .suggestions-collapse-enter-active,
 .suggestions-collapse-appear-active {
   /* the given style to display the component after mount */
-  opacity: 1;
   transition: all 300ms ease-in;
-  max-height: 300px;
+  height: 300px;
   overflow: scroll;
 }
 
 /* the style before the component mountOff the DOM */
 .suggestions-collapse-exit {
-  opacity: 1;
-  max-height: 300px;
+  height: 300px;
+  transition: all 300ms ease-out;
   overflow: scroll;
 }
 /* the style when component/the "in" prop is false */
 .suggestions-collapse-exit-active {
-  opacity: 1;
   transition: all 300ms ease-out;
   height: 0px;
   overflow: hidden;
@@ -33,8 +30,6 @@
 .suggestions-fade-appear {
   /* inital style when component mount to the DOM "in" prop just state to true*/
   opacity: 0.01;
-  max-height: 20px;
-  overflow: hidden;
 }
 
 .suggestions-fade-enter-active,
@@ -42,20 +37,14 @@
   /* the given style to display the component after mount */
   opacity: 1;
   transition: all 300ms ease-in;
-  max-height: 250px;
-  overflow: scroll;
 }
 
 /* the style before the component mountOff the DOM */
 .suggestions-fade-exit {
   opacity: 1;
-  max-height: 250px;
-  overflow: scroll;
 }
 /* the style when component/the "in" prop is false */
 .suggestions-fade-exit-active {
-  opacity: 1;
+  opacity: 0.01;
   transition: all 300ms ease-out;
-  height: 20px;
-  overflow: hidden;
 }

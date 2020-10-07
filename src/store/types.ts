@@ -3,6 +3,8 @@ export const CLEAR_SEARCH_MOVIE = 'CLEAR_SEARCH_MOVIE';
 export const GET_MOVIE_DETAIL = 'GET_MOVIE_DETAIL';
 export const SET_ERROR = 'SET_ERROR';
 export const SET_LOADING = 'SET_LOADING';
+export const COLLAPSE_ANIMATION = 'COLLAPSE_ANIMATION';
+export const FADE_ANIMATION = 'FADE_ANIMATION';
 export const noIcons = `http://placehold.jp/300/919191/ffffff/500x750.png?text=%3F&css=%7B%22border%22%3A%22%2014px%20solid%20rgba(0%2C0%2C0%2C0.2)%22%7D`;
 
 export interface SearchedMovieResult {
@@ -83,14 +85,25 @@ export interface SetErrorActionType {
   payload: FetchError | null;
 }
 
+export interface AnimationActionType {
+  type: typeof COLLAPSE_ANIMATION | typeof FADE_ANIMATION;
+  payload: boolean;
+}
+
 export type DataActionType =
   | SearchMovieActionType
   | GetMovieDetailActionType
   | SetErrorActionType
-  | ClearSearchMovieActionType;
+  | ClearSearchMovieActionType
+  | AnimationActionType;
 
 export interface DataState {
   listData: SearchedMovieResponse | null;
   detailData: GetMovieDetailResponse | null;
   error: FetchError | null;
+}
+
+export interface UIState {
+  collapseAnimation: boolean;
+  fadeAnimation: boolean;
 }

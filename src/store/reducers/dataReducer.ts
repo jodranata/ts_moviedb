@@ -55,6 +55,7 @@ const dataReducer = (
       return handleGetMovieDetail(state, action);
     case SET_ERROR:
       return handleSetError(state, action);
+
     default:
       return state;
   }

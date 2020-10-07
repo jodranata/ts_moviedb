@@ -4,25 +4,33 @@ import { useDispatch } from 'react-redux';
 import Form from 'react-bootstrap/Form';
 
 import { searchMovieAction } from '../store/actions/dataAction';
+import setAnimationAction from '../store/actions/uiAction';
 
 const Searchbar = () => {
   const dispatch = useDispatch();
-  const debounceDispatchSearch = debounce(1000, (val: string) =>
-    dispatch(searchMovieAction(val)),
-  );
-  const debounceDispatchClear = debounce(200, () =>
+
+  const debounceDispatchSearch = debounce(1000, (val: string) => {
+    dispatch(searchMovieAction(val));
+  });
+  const debounceDispatchClear = debounce(350, () =>
     dispatch(searchMovieAction('')),
   );
+
+  const handleOnBlur = () => {
+    dispatch(setAnimationAction('collapse', false));
+    debounceDispatchClear();
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {
       target: { value },
     } = e;
 
-    debounceDispatchSearch(value);
-  };
+    if (value === '' || value === null) {
+      dispatch(setAnimationAction('collapse', false));
+    }
 
-  const handleOnBlur = () => {
-    debounceDispatchClear();
+    debounceDispatchSearch(value);
   };
 
   return (
