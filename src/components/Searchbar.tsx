@@ -6,6 +6,8 @@ import Form from 'react-bootstrap/Form';
 import { searchMovieAction } from '../store/actions/dataAction';
 import setAnimationAction from '../store/actions/uiAction';
 
+import './css/Searchbar.css';
+
 const Searchbar = () => {
   const dispatch = useDispatch();
 
